@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>FF Menu — DROG PERFORMANCE</title>
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="wrap">
+  <!-- LEFT: Menu / features -->
+  <div class="panel">
+    <div class="header">
+      <div class="logo">D⚡P</div>
+      <div class="title">
+        <h1>FF MENU — DROG PERFORMANCE</h1>
+        <p>Giao diện menu hack-style — bật/tắt từng phần, chỉnh nhạy, export cấu hình</p>
+      </div>
+    </div>
+
+    <div class="menu-grid">
+      <!-- Aimlock -->
+      <div class="card" id="card-aim">
+        <div class="row">
+          <div>
+            <h3>AIMLOCKSUPER 🧿</h3>
+            <div class="muted small">Ghìm tâm nhẹ — có thể điều chỉnh strength</div>
+          </div>
+          <div class="controls">
+            <div class="toggle" data-key="aimlock" onclick="uiToggle(this)">
+              <div class="dot"></div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:8px">
+          <div class="small">Strength: <span id="aim-val" class="badge">50</span></div>
+          <input type="range" class="slider" id="aim-range" min="0" max="100" value="50"
+                 oninput="document.getElementById('aim-val').textContent=this.value">
+        </div>
+      </div>
+
+      <!-- Sensitivity -->
+      <div class="card" id="card-sense">
+
+<div class="row">
+          <div>
+            <h3>SENSIMASTERD ♻️</h3>
+            <div class="muted small">Preset cảm ứng / DPI — lưu nhiều profile</div>
+          </div>
+          <div class="controls">
+            <div class="toggle" data-key="sensi" onclick="uiToggle(this)"><div class="dot"></div></div>
+          </div>
+        </div>
+        <div style="margin-top:8px">
+          <div class="small">Camera / ADS: <span id="sensi-val" class="badge">800 DPI</span></div>
+          <input type="range" class="slider" id="sensi-range" min="100" max="2000" value="800"
+                 oninput="document.getElementById('sensi-val').textContent=this.value + ' DPI'">
+        </div>
+      </div>
+
+      <!-- Fix Lag -->
+      <div class="card" id="card-lag">
+        <div class="row">
+          <div>
+            <h3>FIX LAG 🧠</h3>
+            <div class="muted small">Tối ưu RAM / Delay / Minimise stutter</div>
+          </div>
+          <div class="controls">
+            <div class="toggle" data-key="fixlag" onclick="uiToggle(this)"><div class="dot"></div></div>
+          </div>
+        </div>
+        <div style="margin-top:8px">
+          <div class="small">Delay fix level: <span id="lag-val" class="badge">Normal</span></div>
+          <select id="lag-level" onchange="document.getElementById('lag-val').textContent=this.value">
+            <option>Low</option>
+            <option selected>Normal</option>
+            <option>Aggressive</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- GPU/CPU Boost -->
+      <div class="card" id="card-boost">
+        <div class="row">
+          <div>
+            <h3>GPU CPU BOOST 🐦‍🔥</h3>
+            <div class="muted small">Thay đổi governor / boost frames</div>
+          </div>
+          <div class="controls">
+            <div class="toggle" data-key="boost" onclick="uiToggle(this)"><div class="dot"></div></div>
+          </div>
+        </div>
+        <div style="margin-top:8px">
+          <div class="small">Profile: <span id="boost-val" class="badge">Balanced</span></div>
+          <select id="boost-level" onchange="document.getElementById('boost-val').textContent=this.value">
+            <option>Power Saver</option>
+            <option selected>Balanced</option>
+            <option>Performance</option>
+            <option>Ultra</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Weapons quick toggles -->
+      <div class="card" id="card-weapons" style="grid-column: 1 / -1">
+        <div class="row">
+          <div>
+            <h3>Weapon Support</h3>
+            <div class="muted small">Tùy chọn tương thích vũ khí</div>
+          </div>
+          <div class="controls">
+            <button class="btn ghost" onclick="setAllWeapons(true)">Bật tất</button>
+            <button class="btn ghost" onclick="setAllWeapons(false)">Tắt tất</button>
+          </div>
+        </div>
+
+<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+          <label class="badge"><input type="checkbox" id="w-ump" onchange="saveState()"> UMP</label>
+          <label class="badge"><input type="checkbox" id="w-mp40" onchange="saveState()"> MP40</label>
+          <label class="badge"><input type="checkbox" id="w-m1887" onchange="saveState()"> M1887</label>
+          <label class="badge"><input type="checkbox" id="w-ak" onchange="saveState()"> AK</label>
+        </div>
+      </div>
+
+    </div>
+
+    <hr>
+
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <button class="btn primary" onclick="applyPreset()">Áp dụng (Apply)</button>
+      <button class="btn ghost" onclick="resetAll()">Reset</button>
+      <div style="margin-left:auto" class="hint">Phiên bản: <strong>DROG PERFORMANCE</strong></div>
+    </div>
+
+    <div class="footer-note">Ghi chú: Đây là giao diện mô phỏng menu — các hành động thực tế (can thiệp game) không được thực hiện bởi trang này. Bạn có thể export/import cấu hình JSON.</div>
+  </div>
+
+  <!-- RIGHT: Export / config / preview -->
+  <div class="panel side">
+    <h3 styl
+
+<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+          <label class="badge"><input type="checkbox" id="w-ump" onchange="saveState()"> UMP</label>
+          <label class="badge"><input type="checkbox" id="w-mp40" onchange="saveState()"> MP40</label>
+          <label class="badge"><input type="checkbox" id="w-m1887" onchange="saveState()"> M1887</label>
+          <label class="badge"><input type="checkbox" id="w-ak" onchange="saveState()"> AK</label>
+        </div>
+      </div>
+
+    </div>
+
+    <hr>
+
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <button class="btn primary" onclick="applyPreset()">Áp dụng (Apply)</button>
+      <button class="btn ghost" onclick="resetAll()">Reset</button>
+      <div style="margin-left:auto" class="hint">Phiên bản: <strong>DROG PERFORMANCE</strong></div>
+    </div>
+
+    <div class="footer-note">Ghi chú: Đây là giao diện mô phỏng menu — các hành động thực tế (can thiệp game) không được thực hiện bởi trang này. Bạn có thể export/import cấu hình JSON.</div>
+  </div>
+
+  <!-- RIGHT: Export / config / preview -->
+  <div class="panel side">
+    <h3 styl
+<script src="app.js"></script>
